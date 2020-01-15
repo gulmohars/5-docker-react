@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run gulmohar/5-docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region:' us-east-2'
+  app: '5-docker-react'
+  env: '5DockerReact-env'
+  bucket_name: 'elasticbeanstalk-us-east-2-458022107738'
+  bucket_path: '5-docker-react'
+  on:
+    branch: master
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key:
+    secure: "$ACCESS_SECRET_KEY"
